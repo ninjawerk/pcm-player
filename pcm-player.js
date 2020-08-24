@@ -7,7 +7,8 @@ PCMPlayer.prototype.init = function(option) {
         encoding: '16bitInt',
         channels: 1,
         sampleRate: 8000,
-        flushingTime: 1000
+        flushingTime: 1000,
+        pan:0,
     };
     this.option = Object.assign({}, defaults, option);
     this.samples = new Float32Array();
@@ -44,7 +45,10 @@ PCMPlayer.prototype.createContext = function() {
     this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     this.gainNode = this.audioCtx.createGain();
     this.gainNode.gain.value = 1;
-    this.gainNode.connect(this.audioCtx.destination);
+    this.panNode = this.audioCtx.createStereoPanner();
+    this.panNode.pan.value = this.option.pan;
+    this.gainNode.connect(this.panNode);
+    this.panNode.connect(this.audioCtx.destination);
     this.startTime = this.audioCtx.currentTime;
 };
 
@@ -74,6 +78,10 @@ PCMPlayer.prototype.getFormatedValue = function(data) {
 
 PCMPlayer.prototype.volume = function(volume) {
     this.gainNode.gain.value = volume;
+};
+
+PCMPlayer.prototype.pan = function(val) {
+  this.panNode.pan.value = val;
 };
 
 PCMPlayer.prototype.destroy = function() {
@@ -117,7 +125,8 @@ PCMPlayer.prototype.flush = function() {
     if (this.startTime < this.audioCtx.currentTime) {
         this.startTime = this.audioCtx.currentTime;
     }
-    console.log('start vs current '+this.startTime+' vs '+this.audioCtx.currentTime+' duration: '+audioBuffer.duration);
+    
+    // console.log('start vs current '+this.startTime+' vs '+this.audioCtx.currentTime+' duration: '+audioBuffer.duration);
     bufferSource.buffer = audioBuffer;
     bufferSource.connect(this.gainNode);
     bufferSource.start(this.startTime);

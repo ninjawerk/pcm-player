@@ -14,6 +14,8 @@ Available options are:
 
 *sampleRate* - sample rate of the PCM data
 
+*pan* - -1 to 1 level of the stereo pan. 0 is balanced.
+
 *flushingTime* - flushing interval of PCM data to be played in milisecond. Default 1000ms 
 
 Decoder fire an event *decode* whenever it completes decoding. Usually it decodes several opus packet at a time for better performance although it need to be provided single opus packet into *decode* method.
@@ -24,7 +26,8 @@ Decoder fire an event *decode* whenever it completes decoding. Usually it decode
         encoding: '16bitInt',
         channels: 2,
         sampleRate: 8000,
-        flushingTime: 2000
+        flushingTime: 2000,
+        pan: 0
     });
     
     // Now feed PCM data into player getting from websocket or ajax whatever the transport you are using.
@@ -36,6 +39,7 @@ Decoder fire an event *decode* whenever it completes decoding. Usually it decode
 | ------------- |:-------------:| -----:|
 | feed      |  raw PCM data | Usually get from ajax or websocket
 | volume      | decimal value 0 to 1      |  For controlling volume of the player  |
+| pan      | decimal value -1 to 1      |  For controlling stereo pan  |
 | destroy | -      |    Destroy the player instance and release the resources |
   
  **Compatibility**

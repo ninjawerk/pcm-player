@@ -1,5 +1,5 @@
 {
-  "name": "pcm-player",
+  "name": "pcm-player-ex",
   "version": "0.1.0",
   "description": "A minimalist javascript audio player for PCM streaming audio",
   "main": "dist/pcm_player.js",
