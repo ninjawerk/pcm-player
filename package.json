@@ -1,6 +1,6 @@
 {
   "name": "pcm-player-ex",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "A minimalist javascript audio player for PCM streaming audio",
   "main": "dist/pcm_player.js",
   "scripts": {
@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:samirkumardas/pcm-player.git"
+    "url": "git@github.com:ninjawerk/pcm-player.git"
   },
-  "author": "Samir Das",
+  "author": "Samir Das/justdeshan",
   "devDependencies": {
     "uglify-js": "^3.3.23",
     "ws": "^3.3.0"

@@ -16,7 +16,8 @@
         encoding: '16bitInt',
         channels: 2,
         sampleRate: 8000,
-        flushingTime: 2000
+        flushingTime: 2000,
+        pan: -1,
    });
 
    var ws = new WebSocket(socketURL);
@@ -27,6 +28,6 @@
        });
  }   
 </script>
-<script type="text/javascript" src="../pcm-player.min.js"></script>
+<script type="text/javascript" src="./pcm-player.min.js"></script>
 </body>
 </html>
